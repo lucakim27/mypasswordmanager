@@ -1,0 +1,27 @@
+# Target compilation directory (Contains all generated .class files and built JARs)
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Log files
+*.log
+
+# IntelliJ IDEA workspace files
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# VS Code workspace settings
+.settings/
+.vscode/
+.factorypath
+.project
+.classpath
+
+# OS specific hidden files
+.DS_Store
+Thumbs.db
+
+# Sensitive local configuration overrides (Create this later if needed)
+application-local.properties
