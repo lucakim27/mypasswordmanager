@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPasswordManager - Vault</title>
+
+    <link rel="stylesheet" href="/css/vault.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <h2>🔐 MyPasswordManager</h2>
+
+    <div class="user-info">
+        Hello,
+        <span id="username">Heesu</span> 👋
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="toolbar">
+
+        <input
+                id="searchInput"
+                type="text"
+                placeholder="Search website..."
+        >
+
+        <button id="addButton">
+            + Add Account
+        </button>
+
+    </div>
+
+    <div id="accountList">
+
+    </div>
+
+</div>
+
+<div id="modal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <h2>Add Account</h2>
+
+        <input
+                id="website"
+                type="text"
+                placeholder="Website"
+        >
+
+        <input
+                id="accountUsername"
+                type="text"
+                placeholder="Username / Email"
+        >
+
+        <input
+                id="accountPassword"
+                type="password"
+                placeholder="Password"
+        >
+
+        <div class="buttons">
+
+            <button id="saveButton">
+                Save
+            </button>
+
+            <button id="cancelButton">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/vault.js"></script>
+
+</body>
+</html>

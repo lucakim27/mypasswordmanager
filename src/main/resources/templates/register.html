@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/css/register.css">
+    <title>Register - My Password Manager</title>
+</head>
+<body>
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form id="registerForm">
+
+        <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required>
+
+        <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required>
+
+        <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                required>
+
+        <div id="errorMessage" class="error"></div>
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+    <div class="link">
+        <a href="/login">Already have an account?</a>
+    </div>
+</div>
+<script src="/js/register.js"></script>
+</body>
+</html>
