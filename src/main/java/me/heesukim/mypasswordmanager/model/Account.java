@@ -41,6 +41,14 @@ public class Account {
     public String getPassword() { return encryptedPassword; }
     public void setPassword(String password) { this.encryptedPassword = password; }
 
+    public String getEncryptedPassword() {
+        return encryptedPassword;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
+    }
+
     public Long getId() {
         return id;
     }

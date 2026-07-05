@@ -1,10 +1,10 @@
 package me.heesukim.mypasswordmanager.controller;
 
 import me.heesukim.mypasswordmanager.dto.AccountRequest;
+import me.heesukim.mypasswordmanager.dto.AccountResponse;
 import me.heesukim.mypasswordmanager.model.Account;
-import me.heesukim.mypasswordmanager.model.User;
 import me.heesukim.mypasswordmanager.repository.AccountRepository;
-import me.heesukim.mypasswordmanager.repository.UserRepository;
+import me.heesukim.mypasswordmanager.service.AccountService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,33 +14,21 @@ import java.util.List;
 @RequestMapping("/api/accounts")
 public class AccountController {
     private final AccountRepository accountRepository;
-    private final UserRepository userRepository;
+    private final AccountService accountService;
 
-    public AccountController(AccountRepository accountRepository, UserRepository userRepository) {
+    public AccountController(AccountRepository accountRepository, AccountService accountService) {
         this.accountRepository = accountRepository;
-        this.userRepository = userRepository;
+        this.accountService = accountService;
     }
 
     @GetMapping
-    public List<Account> getAccounts(Authentication authentication) {
-        return accountRepository.findByUserUsername(authentication.getName());
+    public List<AccountResponse> getAccounts(Authentication authentication) {
+        return accountService.getAccounts(authentication.getName());
     }
 
     @PostMapping
     public Account addAccount(@RequestBody AccountRequest request, Authentication authentication) {
-
-        String username = authentication.getName();
-
-        User user = userRepository.findByUsername(username);
-
-        Account account = new Account(
-                request.getWebsite(),
-                request.getUsername(),
-                request.getPassword(),
-                user
-        );
-
-        return accountRepository.save(account);
+        return accountService.createAccount(request, authentication.getName());
     }
 
     @DeleteMapping("/{id}")

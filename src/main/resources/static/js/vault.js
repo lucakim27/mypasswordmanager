@@ -46,8 +46,6 @@ document.getElementById("saveButton")
 
     const message = await response.text();
 
-    alert(message);
-
     await loadAccounts();
 
     modal.classList.add("hidden");
@@ -56,8 +54,6 @@ document.getElementById("saveButton")
 async function loadAccounts() {
     const res = await fetch("/api/accounts");
     const data = await res.json();
-
-    console.log(data)
 
     accounts.length = 0;
     accounts.push(...data);
