@@ -19,7 +19,7 @@ document.getElementById("cancelButton")
 };
 
 document.getElementById("saveButton")
-    .onclick = () => {
+    .onclick = async () => {
 
     const website =
         document.getElementById("website").value;
@@ -30,19 +30,40 @@ document.getElementById("saveButton")
     const password =
         document.getElementById("accountPassword").value;
 
-    accounts.push({
+    const response = await fetch(
+        "/api/accounts",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                website,
+                username,
+                password
+            })
+        });
 
-        website,
-        username,
-        password
+    const message = await response.text();
 
-    });
+    alert(message);
 
-    renderAccounts();
+    await loadAccounts();
 
     modal.classList.add("hidden");
-
 };
+
+async function loadAccounts() {
+    const res = await fetch("/api/accounts");
+    const data = await res.json();
+
+    console.log(data)
+
+    accounts.length = 0;
+    accounts.push(...data);
+
+    renderAccounts();
+}
 
 function renderAccounts(){
 
@@ -76,7 +97,7 @@ function renderAccounts(){
 
                 <button
                     class="deleteBtn"
-                    onclick="deleteAccount(${index})">
+                    onclick="deleteAccount(${account.id})">
 
                     Delete
 
@@ -111,10 +132,10 @@ function togglePassword(index){
 
 }
 
-function deleteAccount(index){
-
-    accounts.splice(index,1);
-
-    renderAccounts();
-
+function deleteAccount(id) {
+    fetch(`/api/accounts/${id}`, {
+        method: "DELETE"
+    }).then(loadAccounts);
 }
+
+loadAccounts();
